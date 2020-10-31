@@ -18,4 +18,4 @@ class UserJWTView(views.APIView):
     def get(self, request, *args, **kwargs):
         user_data = UserSerializer(instance=request.user).data
         token = jwt.encode(user_data, settings.SECRET_KEY, algorithm='HS256')
-        return Response({"jwt": token})
+        return Response(headers={"jwt": token})
