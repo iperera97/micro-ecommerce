@@ -82,6 +82,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "users.User"
 
+ACCESS_TOKEN_EXPIRE_SECONDS = 60 * 60 * 24
+
+# oauth
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
+    'ACCESS_TOKEN_EXPIRE_SECONDS': ACCESS_TOKEN_EXPIRE_SECONDS
+}
+
+# rest api
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -96,6 +111,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+APPEND_SLASH = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
